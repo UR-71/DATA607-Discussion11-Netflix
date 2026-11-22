@@ -1,0 +1,115 @@
+---
+title: "Discussion 11: Analyzing Netflix’s Recommender System"
+author: "Ummay Rukiya"
+date: "2026-11-22"
+format:
+  html:
+    toc: true
+    embed-resources: true
+---
+
+## Why I chose Netflix
+
+I enjoy movies and series about time travel and mystery, so I chose Netflix because I wanted to understand how a service might help someone find more of what they enjoy. My main question was whether recommending something similar to what a viewer watched before is enough to help them choose what to watch next.
+
+I do not have a Netflix account. This report is based on public Netflix documentation and its published interface examples, not a test of a personal account. I separate what Netflix documents from my own interpretation and suggestions. The sources were reviewed on November 22, 2026, and features may differ across devices and rollouts.
+
+## Scenario Design: The viewer
+
+I used the three questions from the assignment’s Scenario Design framework: Who are the target users? What are their goals? How can the application help them achieve those goals? For this example, I focused on one hypothetical viewer rather than trying to represent everyone who uses Netflix.
+
+### Who are the target users?
+
+My example viewer is someone who enjoys mystery and science fiction but has limited time after work. They sometimes want a complicated story and sometimes want something easy to follow. This is an illustrative persona, not a description developed from customer interviews.
+
+### What are their goals?
+
+This viewer wants to find something enjoyable without spending their whole evening searching. They also want to know whether a recommendation fits the time and attention they have available. Liking a genre does not mean wanting to watch it every night.
+
+For example, someone might want a short, light mystery on a busy evening but be willing to start a longer series over the weekend. Their viewing history could be the same in both situations, while their immediate goal is different.
+
+### How can Netflix help them achieve those goals?
+
+Netflix’s published TV interface guide shows previews and title details, including runtime and a synopsis. It also describes access to saved titles, Continue Watching, search, and genre filters. These features support different tasks: starting something new, finding a saved title, or returning to an unfinished story (Netflix, 2025).
+
+My interpretation is that these details can help the viewer judge a recommendation before committing to it. However, a recommendation could still fit their general taste and miss what they want that evening. That is a possible design mismatch, not a problem I observed in a personal account.
+
+## Scenario Design: The organization
+
+I think it makes sense to apply Scenario Design twice because a viewer’s successful evening and a company’s successful recommendation are related, but they are not automatically the same thing.
+
+### Who are the target users?
+
+For the organizational perspective, I treated Netflix’s product and recommendation teams as the internal users of recommendation results and performance information. This is my analytical framing rather than a claim that Netflix uses this exact Scenario Design process.
+
+### What are their goals?
+
+Netflix describes its business as a subscription service with personalized recommendations (Netflix, n.d.-a). I infer that helping members consistently find worthwhile content would support continued subscriptions. I would therefore define the business goal as making the service useful enough that members want to return, while helping them discover relevant parts of the catalog.
+
+### How can the system help them achieve those goals?
+
+The teams need evidence about whether a recommendation helped the viewer. I would use a combination of discovery success, reported satisfaction, and longer-term return behavior. Watching for a long time does not always mean someone enjoyed the experience, just as stopping a title does not always mean they disliked it.
+
+For me, this is where the two perspectives need to meet. A viewer who finds one enjoyable movie quickly could have a better experience than someone who spends much longer browsing. A business measure that rewards only time spent could miss that difference. This is my proposed evaluation principle, not a statement about Netflix’s private objective function.
+
+## What I could reverse engineer
+
+### What Netflix publicly documents
+
+Netflix says its recommendations use viewing history, ratings, title information, and patterns from members with similar tastes. It also considers context such as language and device. The homepage personalizes which rows appear, which titles they contain, and their order. For a new profile, selecting favorite titles is optional; otherwise, the service starts with varied, popular choices. Later activity updates the recommendations (Netflix, n.d.-a).
+
+Viewers can also give three kinds of explicit feedback: dislike, like, and love. Netflix explains that these ratings contribute to its suggestions (Netflix, n.d.-b). The TV interface guide describes recommendations responding to actions such as rating a title, watching a trailer, and saving something to My List (Netflix, 2025).
+
+### My interpretation of the likely workflow
+
+Based on those descriptions, I would describe the process as collecting signals, finding potentially relevant titles, arranging the choices, and learning from later feedback. This is a conceptual reconstruction, not recovered source code.
+
+The use of similar viewers suggests a collaborative component. Using information about the titles suggests a content-based component. Together, these descriptions are consistent with a hybrid approach, although they do not reveal the exact models, weights, or training procedures. The interface also matters: changing where a title appears changes how easily someone can discover it.
+
+I would be careful about interpreting behavior as a clear preference. Someone may start a movie because a friend chose it, or stop because they ran out of time. Those actions can be useful signals without fully explaining what the viewer wanted. These are hypothetical examples of ambiguity in feedback.
+
+### A recent development and the limits of this analysis
+
+Netflix’s technology team describes AI Discover as a limited TV experiment for a small group of members. It lets viewers select themes, narrow their choices, and tune recommendations, including choosing not to receive certain suggestions. Its recommendations remain connected to catalog retrieval, ranking, and eligibility rules (Netflix Technology Blog, 2026).
+
+This matters because I should not assume that viewer steering is entirely missing. It also does not mean every member has these controls. Without access to an account or internal experiments, I cannot measure recommendation accuracy, verify individual rollout access, or identify why a particular title was ranked first.
+
+## My recommendations
+
+### Make temporary preferences easier to express
+
+I would build on the direction of AI Discover by clearly separating preferences for this visit from preferences that should last. For example, a viewer could choose “something light tonight” without teaching the system that they no longer enjoy complicated stories. These are proposed controls, not verified current labels.
+
+I would test this with viewers who switch between different kinds of content. The main outcome would be whether they find something satisfying with less searching. I would also check whether temporary choices unintentionally make later recommendations less useful.
+
+### Make the reasons for recommendations useful and editable
+
+I would offer brief, spoiler-free explanations connected to a viewer’s preferences, along with a way to correct the interpretation. A viewer might like a film’s mystery but dislike its violence. Treating that as one overall positive rating can lose the distinction.
+
+Since the AI Discover experiment already describes explanations and tuning, my suggestion is to test whether the explanations actually help people make choices and whether corrections improve later results. I would compare satisfaction with and without the added controls, rather than assuming more explanation is always better.
+
+### Give viewers a clear choice about familiar versus different suggestions
+
+I would test an optional discovery control that lets viewers ask for familiar choices or something outside their usual pattern. For example, someone who likes mysteries might want a recommendation from a different country or a different style of storytelling.
+
+I would evaluate both variety and enjoyment. Showing unfamiliar titles would not be an improvement if the viewer consistently disliked them. I would also check that trying something different does not make it harder to return to familiar favorites.
+
+## Conclusion
+
+What stood out to me was that knowing someone’s past choices is only part of understanding their current goal. Netflix’s public materials describe a system that uses several signals and personalizes the presentation as well as the titles. Its recent experiment also shows movement toward letting viewers guide the process more directly.
+
+I would judge the recommender by whether it helps someone find an experience they are glad they chose. Scenario Design helped me keep that goal separate from simply producing more suggestions or encouraging more activity.
+
+## References
+
+Netflix. (n.d.-a). *How Netflix’s recommendations system works*. Netflix Help Center. https://help.netflix.com/en/node/100639
+
+Netflix. (n.d.-b). *How to rate TV shows and movies*. Netflix Help Center. https://help.netflix.com/en/node/9898
+
+Netflix. (2025, May 19). *A user guide to Netflix’s new TV experience*. Tudum. https://www.netflix.com/tudum/articles/netflix-new-homepage-layout-user-guide
+
+Netflix Technology Blog. (2026). *Engineering AI Discover*. https://netflixtechblog.com/engineering-ai-discover-e244944cdc38
+
+Temkin, B. D. (2004). *Scenario design: A disciplined approach to customer experience*. Forrester Research. Three-question framework as summarized in the DATA 607 Discussion 11 instructions.
+
+
